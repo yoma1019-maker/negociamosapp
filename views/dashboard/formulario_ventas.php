@@ -741,7 +741,7 @@
                         <div class="grupo-agente">
                             <div class="campo2 campo-agente1">
                                 <label for="agente1_id">Agente 1</label>
-                                <select name="agente1_id" id="agente1_id" required>
+                                <select name="agentes[principal]" id="agente1_id" required>
                                     <option value="">-- Seleccione un agente --</option>
                                     <?php foreach ($options3 as $agente) : ?>
                                         <option value="<?php echo s($agente['id']); ?>"
@@ -767,7 +767,7 @@
                         <div class="grupo-agente">
                             <div class="campo2 campo-agente2">
                                 <label for="agente2_id">Agente 2</label>
-                                <select name="agente2_id" id="agente2_id">
+                                <select name="agentes[secundario]" id="agente2_id">
                                     <option value="">-- Seleccione un agente --</option>
                                     <?php foreach ($options3 as $agente) : ?>
                                         <option value="<?php echo s($agente['id']); ?>"
@@ -793,7 +793,7 @@
                         <div class="grupo-agente">
                             <div class="campo2 campo-agente3">
                                 <label for="agente3_id">Agente 3</label>
-                                <select name="agente3_id" id="agente3_id">
+                                <select name="agentes[adicional]" id="agente3_id">
                                     <option value="">-- Seleccione un agente --</option>
                                     <?php foreach ($options3 as $agente) : ?>
                                         <option value="<?php echo s($agente['id']); ?>"

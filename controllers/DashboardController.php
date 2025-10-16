@@ -502,7 +502,7 @@ class DashboardController {
                     // ===== 3. Crear la venta con cliente_id seguro =====
                     $ventas = new Ventas();
                     $ventas->sincronizar($data);
-                    $ventas->agente_id = $data['agente_id'] ?? null;
+                    $ventas->agente_id = $data['agentes']['principal'] ?? null;
                     $cliente_id = $cliente->id; // obtener nuevo id
 
 
@@ -513,9 +513,13 @@ class DashboardController {
                 $ventas->fecha = date('Y-m-d');  // Guarda fecha de hoy automáticamente
                 }
 
-
+                
+                
+            $ventas->limpiarCamposMoneda();
             // Guardar en DB
             $ventas->guardar();
+
+            
 
             // Respuesta JSON
             echo json_encode(["ok" => true, "id" => $ventas->id]);

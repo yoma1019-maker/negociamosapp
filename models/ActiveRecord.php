@@ -126,6 +126,8 @@ class ActiveRecord {
             return $resultado;
         }
 
+
+
 // === GUARDAR ===
         public function guardar() {
         if (!is_null($this->id)) {
