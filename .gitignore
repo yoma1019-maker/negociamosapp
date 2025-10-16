@@ -1,0 +1,21 @@
+# Dependencias y cache
+/vendor/
+/node_modules/
+/var/
+/.cache/
+.env
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Compilados
+/public/build/
+/public/dist/
+/public/css/
+/public/js/*.map
+
+# Archivos locales
+.idea/
+.vscode/
+

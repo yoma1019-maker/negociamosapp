@@ -1,0 +1,71 @@
+@use 'variables' as v;
+
+//*, *:before, *:after {
+   // box-sizing: inherit;
+//}
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    height: 100%;
+}
+body {
+    font-family: v.$fuente_textos;
+    //min-height: 100%;
+    //background-color: v.$grisClaro;
+    background-image: url(../img/familia.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;    
+}
+.contenedor {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+  
+}
+
+.contenedor-listado {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+  
+}
+
+.contenedor-sm {
+    max-width: 70rem;
+    margin: 0 auto;
+}
+
+.contenedor-sm-blistado {
+    max-width: 70rem;
+    margin: 0 auto;
+}
+
+.contenedor-sm-menu {
+    width: 100%;
+    //margin: 5rem 16rem 0 16rem;
+    margin: 0 auto;
+    padding-left: 20rem;
+    padding-right: 20rem;
+}
+
+.contenedor-sm-formulario { //login
+    max-width: 50rem;
+    margin: 0 auto;
+}
+
+
+.contenedor-sm-formulario2 { //agente
+    max-width: 90rem;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+}
+
+
+

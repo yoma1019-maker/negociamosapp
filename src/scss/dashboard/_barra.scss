@@ -1,0 +1,81 @@
+@use "sass:color";
+
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+
+.barra{
+    background-color: v.$azul;  
+    padding: 0;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.5);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+
+
+
+    &__grid{
+        display: flex;
+        flex-direction: column;
+
+        @include m.tablet {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+       
+        }
+
+    }
+
+    &__nav{
+
+        display: flex;
+        flex-direction: column;
+       
+
+        @include m.tablet {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        a{
+            color: v.$blanco;
+            font-size: 1.4rem;
+            padding: 1rem;
+            padding-left: 1.5rem;
+
+            &:hover{
+                background-color: color.adjust(v.$azul, $lightness: -5%, $space: hsl);;
+                color: v.$blanco;
+            }
+        }
+
+
+    }
+
+    &__logo{
+
+        width: 20rem;
+    }
+
+
+    p{ 
+        margin: 0;
+        font-size: 1.4rem;
+        color: v.$blanco;
+        font-weight: 400;
+        font-family: v.$fuente_logo;
+        padding-right: 1rem;
+    }
+
+    .cerrar-sesion{
+        background-color: v.$rojo;
+
+    }
+    
+}

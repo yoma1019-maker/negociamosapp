@@ -1,0 +1,114 @@
+@use "sass:color";
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.formulario-agente {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 247, 250, 0.95));
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.15);
+  border-radius: 1.5rem;
+  padding: 3rem 4rem;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.25);
+  }
+
+  .encabezado2 {
+    hr {
+      border: none;
+      height: 3px;
+      background: linear-gradient(to right, v.$azul, color.adjust(v.$azul, $lightness: 20%, $space: hsl));
+      border-radius: 5px;
+      margin-bottom: 2rem;
+    }
+
+    .nombre2 {
+      font-family: v.$fuente_logo;
+      text-align: center;
+      font-size: 2.2rem;
+      margin: 0 0 1rem;
+      color: v.$azul;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+// Sección con 2 columnas
+.contenido-campo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+// Sección con 3 columnas (roles, seguridad, etc.)
+.contenido-campo2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.campo2 {
+  display: flex;
+  flex-direction: column;
+
+  label,
+  legend {
+    font-size: 1.1rem;
+    font-family: v.$fuente_logo;
+    font-weight: 600;
+    color: v.$azul;
+    margin-bottom: 0.5rem;
+  }
+
+  input,
+  select {
+    padding: 0.7rem 0.7rem;
+    border: 1px solid color.adjust(v.$azuln2, $lightness: 30%, $space: hsl);
+    background-color: color.adjust(v.$blanco, $lightness: 45%, $space: hsl);
+    font-size: 1rem;
+    border-radius: 0.8rem;
+    transition: all 0.2s ease-in-out;
+
+    &:focus {
+      outline: none;
+      border-color: v.$azul;
+      background-color: #fff;
+      box-shadow: 0 0 6px rgba(v.$azul, 0.4);
+    }
+
+    &::placeholder {
+      color: color.adjust(v.$gris, $lightness: 25%, $space: hsl);
+      font-style: italic;
+    }
+  }
+}
+
+// Botones
+.boton2,
+.boton3 {
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.boton2 {
+  background: linear-gradient(to right, #28a745, #218838);
+  color: #fff;
+}
+
+.boton3 {
+  background: linear-gradient(to right, #ffc107, #e0a800);
+  color: #000;
+}

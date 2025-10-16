@@ -1,0 +1,102 @@
+@use "sass:color";
+
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+
+.contenedor-sm{
+
+ margin-top: 40px;
+
+.encabezado-p{
+
+    hr{
+        border: 0 ; 
+        border-top: 3px double v.$azul;
+        padding-top: 1rem; 
+    }
+
+    .nombre-p{
+       
+        margin: 2rem auto 0;
+        font-family: v.$fuente_logo;
+        text-align: center;
+        color: v.$azul;
+        font-weight: 700;
+    }
+}
+
+
+.grip{
+
+    
+
+    @include m.tablet {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+        
+    }
+
+
+    .parametro{
+
+        text-align: center;
+        //text-shadow: -1px -1px rgba(0,0,0,0.3);
+        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.1);
+        background-color: v.$blanco;
+        border-radius: 1rem;
+        border: 0.1rem solid v.$azul; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        transition-property: transform;
+        transition-duration: 300ms;
+        
+        &:hover{
+            transform: scale(1.03);
+            background-color: color.adjust( v.$cyan, $lightness: -3%, $space: hsl );
+            cursor: pointer;
+
+            .icono-parametro{
+                color: v.$blanco;
+            }
+
+            .informacion-parametro{
+                a{
+                    color: v.$blanco;
+                }
+            }
+        }
+
+        .icono-parametro{
+            padding: 2rem;
+            color: v.$grisClaro3;
+        }
+
+        i{
+           font-size: 6rem;
+        }
+
+        .informacion-parametro{
+
+            padding-right: 2rem;
+          
+            a{
+                font-size: 1.8rem;
+                text-align: center;
+                margin: 0;
+                color: v.$azul;
+                text-transform: capitalize;
+                line-height: 1.2;
+                font-weight: 700;
+            }
+        }
+
+        
+
+    }
+
+}}

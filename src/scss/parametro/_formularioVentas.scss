@@ -1,0 +1,855 @@
+@use "sass:color";
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.formulario-ventas {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(245,247,250,0.98));
+  box-shadow: 0 8px 24px -4px rgba(0,0,0,0.12);
+  border-radius: 1.5rem;
+  padding: 3rem 4rem;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 12px 28px -4px rgba(0,0,0,0.18);
+  }
+
+  .encabezado2 {
+    hr {
+      border: none;
+      height: 3px;
+      background: linear-gradient(to right, v.$azul, color.adjust(v.$azul, $lightness: 20%, $space: hsl));
+      border-radius: 5px;
+      margin-bottom: 2rem;
+    }
+
+    .nombre2 {
+      font-family: v.$fuente_logo;
+      text-align: center;
+      font-size: 2.2rem;
+      margin: 1rem;
+      color: v.$azul;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+
+
+// SUBTITULOS
+.h3 h3 {
+    font-size: 1.5rem;   /* cambia el tamaño, puedes usar px, em o rem */
+    font-weight: 600;   /* opcional, más gruesa */
+    text-align: left;  /* opcional, centrado */
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color:  v.$blanco;  
+    background: linear-gradient(135deg, v.$azul 0%, color.adjust(v.$azul, $lightness: 10%) 100%);
+    padding: 0.4rem;
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+    padding-left: 1rem;
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, v.$azul, color.adjust(v.$azul, $lightness: 20%, $space: hsl));
+      border-radius: 5px;
+      margin-bottom: 2rem;
+    }
+}
+
+.h3-segundo h3 {
+    font-size: 1.8rem;   /* cambia el tamaño, puedes usar px, em o rem */
+    font-weight: bold;   /* opcional, más gruesa */
+    text-align: left;  /* opcional, centrado */
+    margin: 0;           /* elimina espacios extras */
+}
+
+
+// filtro cliente
+
+    .filtro-clientes {
+
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr; /* proporción equivalente 30/70 */
+      max-width: 100%;               /* nunca más ancho que su padre */
+      box-sizing: border-box;         /* incluye padding en el cálculo */
+      grid-template-areas:
+      "filtro_nombre filtro_correo filtro_celular btn_buscar_cliente";
+      gap:1.5rem;
+      margin-bottom:2rem;
+
+    }
+
+    .campo-filtro-nombre          { grid-area: filtro_nombre; }
+    .campo-filtro-correo          { grid-area: filtro_correo }
+    .campo-filtro-celular         { grid-area: filtro_celular; }
+    .campo-boton-buscar-cliente   { grid-area: btn_buscar_cliente; }
+
+
+//SECCION NOMBRE, NACIMIENTO, CIUDAD NACIMIENTO, SEXO DEL FORMULARIO VENTAS
+.contenido-campo2 {
+    display: grid;
+    grid-template-columns: 41% 14% 24% 16%;
+    grid-template-areas:
+        "nombre nacimiento ciudad_nacimiento sexo";
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.campo-nombre             { grid-area: nombre; }
+.campo-nacimiento         { grid-area: nacimiento; }
+.campo-ciudad-nacimiento  { grid-area: ciudad_nacimiento; }
+.campo-sexo               { grid-area: sexo; }
+
+
+.contenido-campo2 input,
+.contenido-campo2 select {
+    height: 30px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+
+}
+
+
+//SECCION TIPO DE DOCUMENTO, OTRO DOCUMENTO, CEDULA, EXPEDICION, LUGAR EXPEDICION DEL FORMULARIO VENTAS
+.contenido-campo3 {
+    display: grid;
+    grid-template-columns: 10% 20% 20% 20% 23%;
+    grid-template-areas:
+         "tipo_cedula otro_doc cedula expedicion lugarexp";
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.campo-tipo-cedula   { grid-area: tipo_cedula; }
+.campo-otro-doc      { grid-area: otro_doc; }
+.campo-cedula        { grid-area: cedula; }
+.campo-expedicion    { grid-area: expedicion; }
+.campo-lugarexp      { grid-area: lugarexp; }
+
+
+.contenido-campo3 input,
+.contenido-campo3 select {
+    height: 30px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+
+
+}
+
+//SECCION CELULAR, CELULAR2, ESTADO CIVIL, NACIONALIDAD, OTRO PAIS DEL FORMULARIO VENTAS
+.contenido-campo4 {
+    display: grid;
+    grid-template-columns: 17% 17% 20% 20% 19%;
+    grid-template-areas:
+         "celular celular2 civil nacionalidad otro_nac";
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.campo-celular        { grid-area: celular; }
+.campo-celular2       { grid-area: celular2; }
+.campo-civil          { grid-area: civil; }
+.campo-nacionalidad   { grid-area: nacionalidad; }
+.campo-otro-nac       { grid-area: otro_nac; } 
+
+
+.contenido-campo4 input,
+.contenido-campo4 select {
+    height: 30px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+
+}
+
+//SECCION DIRECCION, CIUDAD, DEPARTAMENTO DEL FORMULARIO VENTAS
+.contenido-campo5 {
+    display: grid;
+    grid-template-columns: 48% 25% 23%;
+    grid-template-areas:
+         "direccion ciudad departamento";
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.campo-direccion    { grid-area: direccion; }
+.campo-ciudad       { grid-area: ciudad; }
+.campo-departamento { grid-area: departamento; }
+
+.contenido-campo5 input,
+.contenido-campo5 select {
+    height: 30px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+
+}
+
+.contenido-campo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "pais email email email";
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.campo-pais        { grid-area: pais; } 
+.campo-email       { grid-area: email; }
+
+
+.contenido-campo input,
+.contenido-campo select {
+    height: 30px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+}
+
+
+// Estilos para los select y date
+select {
+  color: #000; /* color normal del texto */
+}
+
+select:invalid {
+  color: #aaa; /* gris claro cuando está sin selección */
+
+}
+
+input[type="date"] {
+  color: #aaa; /* gris claro por defecto */
+
+}
+
+input[type="date"]:valid {
+  color: #000; /* negro cuando el usuario selecciona fecha */
+}
+
+/* Cuando el usuario elige una opción distinta a la vacía */
+.campo2 select:valid {
+  color: #000;
+}
+
+/* Las opciones del menú desplegable */
+.campo2 select option {
+  color: #000;
+}
+
+/* Placeholder (la primera opción vacía) en gris claro */
+.campo2 select option[value=""] {
+  color: #aaa;
+}
+
+
+//SECCION DE ARCHIVOS DEL FORMULARIO VENTAS
+.contenido-archivo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.upload-group {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: #f8faff;
+  border: 1px color.adjust(v.$azul, $lightness: 40%);
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: fit-content;
+  min-width: 270px;
+  margin-bottom: 1rem;
+
+  &:hover {
+    background: color.adjust(v.$azul, $lightness: 48%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  // Input oculto, activado por el label
+  input[type="file"] {
+    display: none;
+  }
+
+  .file-label {
+    background: v.$azul;
+    color: v.$blanco;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    span {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      background: color.adjust(v.$azul, $lightness: -10%);
+    }
+  }
+
+  .file-name {
+  color: color.adjust(v.$azul, $lightness: 20%);
+  font-style: normal;
+  font-weight: 500;
+}
+
+}
+
+
+
+
+// Botones
+.botones {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+
+    // Colores según tipo de botón
+    &.btn-anterior { background-color: v.$amarillo; color: #333; }
+    &.btn-siguiente { background-color: v.$verde; color: #fff; }
+    &.btn-enviar   { background-color: v.$verde2; color: #fff; }
+    &.btn-buscar   { background-color: v.$verde2; color: #fff; }
+
+    // Hover genérico
+    &:hover {
+      &.btn-anterior { background-color: #e0e0e0; }
+      &.btn-siguiente { background-color: #0069d9; }
+      &.btn-enviar   { background-color: #218838; }
+      &.btn-buscar   { background-color: #218838; }
+    }
+  }
+}
+
+
+
+// estilos para el acordeon
+.acordeon-titulo {
+    background: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 100%;
+    transition: background 0.3s;
+    
+
+}
+
+.acordeon-titulo:hover {
+    background: #ddd;
+}
+
+.acordeon-contenido {
+    display: none; /* oculto por defecto */
+    padding: 1rem 0;
+}
+
+.acordeon-contenido.activo {
+    display: block; /* se muestra cuando tiene la clase activo */
+}
+
+// campos de la seccion proyectos
+
+.fila-proyecto-lote {
+    //display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+
+
+//paginacion
+.pagina {
+    display: none;
+    max-width: 100%; /* asegura que no se desborde */
+    overflow-x: hidden; /* corta desbordes horizontales */
+}
+
+.pagina.active {
+    display: block;
+}
+
+
+//DIVISION BUSCAR POR PROYECTO
+.cuatro-partes {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+        "proyecto lote buscar";
+    grid-gap:1.5rem;
+    margin-bottom:2rem;
+}
+
+.campo-proyecto       { grid-area: proyecto; }
+.campo-lote           { grid-area: lote; }
+.campo-buscar-estado  { grid-area: buscar; }
+
+
+.campo-inline input#lote {
+  width: 5rem;   /* ajusta a tu gusto */
+}
+/* tablet / pantallas medianas */
+@media (max-width: 1024px) {
+  .cuatro-partes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* móvil */
+@media (max-width: 600px) {
+  .cuatro-partes {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cuatro-partes .parte {
+  border-radius: 10px;
+  //box-shadow: 0 2px 6px rgba(20,20,40,0.03);
+}
+
+
+//DIVISION INFORMACION GENERAL DEL PROYECTO
+
+    .contenido-informacion {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr; /* proporción equivalente 30/70 */        /* incluye padding en el cálculo */
+      grid-template-areas:
+      "estado_lote etapa aream valor_aream ";
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+
+    }
+
+    .campo-area           { grid-area: aream; }
+    .campo-etapa          { grid-area: etapa; }
+    .campo-valor_area     { grid-area: valor_aream; }
+    .campo-estado-lote    { grid-area: estado_lote; }
+
+     /* obliga a los hijos a poder encogerse (clave contra overflow) */
+    .contenido-informacion > * {
+      min-width: 0;
+    }
+
+     @media (max-width: 768px) {
+      .contenido-informacion {
+        grid-template-columns: 1fr; /* en móviles se apila */
+      }
+    }
+
+  //DIVISION PAGOS E INICIALES
+
+    .contenido-informacion2 {
+      display: grid;
+      grid-template-columns: 50% 50%; /* proporción equivalente 30/70 */
+      grid-template-areas:
+      "porcen_restante porcen_inicial" 
+      "valor_total cuota_inicial"
+      "descuento separacion"
+      "valor_venta saldo_inicial"
+      "observaciones doc_separacion";
+      gap:1rem;
+      margin-bottom:2rem;
+
+      &::before {
+    content: "";
+    position: absolute;
+    top: 63%; 
+    bottom: 0;
+    left: 55.5%; // al centro
+    width: 2px;
+    background-color: #dce4f0;
+    transform: translateX(-50%);
+    
+  }
+
+    }
+    .campo-restante-porc      { grid-area: porcen_restante; }
+    .campo-iniporc            { grid-area: porcen_inicial; }
+    .campo-total              { grid-area: valor_total; }
+    .campo-inicial            { grid-area: cuota_inicial; }
+    .campo-descuento          { grid-area: descuento;}
+    .campo-separacion         { grid-area: separacion; }
+    .campo-venta              { grid-area: valor_venta; }
+    .campo-pendiente-inicial  { grid-area: saldo_inicial; }
+    .campo-observaciones      { grid-area: observaciones; }
+    .campo-doc-separacion     { grid-area: doc_separacion; }
+    
+    
+    .campo-descuento {
+        background-color: #ffffff;
+        color: #000000;
+    } 
+
+  
+    /* layout horizontal para los campos */
+    .campo-inline {
+      display: grid;
+      grid-template-columns: 8rem 0.5fr; /* label fijo, input flexible */
+      align-items: center;
+      gap: 0;
+      margin-bottom: 2rem;
+      
+    }
+
+    .campo-inline label {
+      //text-align: right;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .campo-inline input {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .campo-inline2 {
+      display: grid;
+      grid-template-columns: 13rem 0.5fr; /* label fijo, input flexible */
+      align-items: center;
+      gap: 0;
+    }
+
+    .campo-inline2 label {
+      //text-align: right;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .campo-inline2 input {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .campo-observaciones label {
+      flex: 0 0 20%;             /* ancho fijo para el label */
+    }
+
+     .campo-inline3 {
+      display: grid;
+      grid-template-columns: 11rem 0.8fr; /* label fijo, input flexible */
+      align-items: center;
+      gap: 0;
+    }
+
+    .campo-inline3 label {
+      //text-align: right;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .campo-inline3 input {
+      width: 100%;
+      min-width: 0;
+    }
+
+//DIVISION DE CUOTAS INICIALES
+      .cuotas-fechas {
+        display: grid;
+        grid-template-columns: repeat(2, auto); /* Dos columnas automáticas */
+        justify-content: center; /* Centra horizontalmente */
+        align-items: start;
+        gap: 1rem 3rem; /* espacio entre columnas y filas */
+        max-width: 100%; /* evita que se desborde */
+        margin-top: 2rem; /* centra el bloque dentro del padre */
+
+        
+      }
+
+      /* línea divisoria vertical */
+      .cuotas-fechas::before {
+        content: "";
+        position: absolute;
+        top: 60%;                /* inicia justo al inicio de la sección */
+        bottom: 0;             /* termina al final de las filas */
+        left: 56%;             /* centrada */
+        transform: translateX(-50%);
+        transform: translateY(135%); 
+        width: 2px;
+        background-color: #dce4f0; /* color azulito */
+        border-radius: 2px;
+
+      }
+
+      /* Cada fila de cuota con su fecha */
+      .cuotas-fechas .fila-cuota {
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      /* Asignar manualmente las posiciones (igual que antes) */
+      .cuotas-fechas .fila-cuota:nth-child(1)  { grid-column: 1; grid-row: 1; }
+      .cuotas-fechas .fila-cuota:nth-child(2)  { grid-column: 1; grid-row: 2; }
+      .cuotas-fechas .fila-cuota:nth-child(3)  { grid-column: 1; grid-row: 3; }
+      .cuotas-fechas .fila-cuota:nth-child(4)  { grid-column: 1; grid-row: 4; }
+      .cuotas-fechas .fila-cuota:nth-child(5)  { grid-column: 1; grid-row: 5; }
+      .cuotas-fechas .fila-cuota:nth-child(6)  { grid-column: 1; grid-row: 6; }
+      .cuotas-fechas .fila-cuota:nth-child(7)  { grid-column: 2; grid-row: 1; }
+      .cuotas-fechas .fila-cuota:nth-child(8)  { grid-column: 2; grid-row: 2; }
+      .cuotas-fechas .fila-cuota:nth-child(9)  { grid-column: 2; grid-row: 3; }
+      .cuotas-fechas .fila-cuota:nth-child(10) { grid-column: 2; grid-row: 4; }
+      .cuotas-fechas .fila-cuota:nth-child(11) { grid-column: 2; grid-row: 5; }
+      .cuotas-fechas .fila-cuota:nth-child(12) { grid-column: 2; grid-row: 6; }
+
+      /* Estilos de los campos */
+      .cuotas-fechas label {
+        white-space: nowrap;
+        font-weight: 600;
+        color: #0b79b8;
+        font-size: 0.95rem;
+      }
+
+      .cuotas-fechas input[type="text"],
+      .cuotas-fechas input[type="date"] {
+        width: 9rem; /* tamaño uniforme */
+        font-size: 1rem;
+        box-sizing: border-box;
+      }
+
+      /* Asegura que las columnas internas queden centradas */
+      .campo-inline4 {
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .campo-cuotas-inicial{
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: 2rem;
+        width: 9rem;
+        
+      }
+
+
+//seccion informacion proyecto valor restate y cuotas
+
+.contenido-restante1 {
+      display: grid;
+      grid-template-columns: 2fr 2fr; /* proporción equivalente 30/70 */
+      max-width: 100%;               /* nunca más ancho que su padre */
+      box-sizing: border-box;         /* incluye padding en el cálculo */
+      grid-template-areas:
+      "valor_menos_cuota_inicial cuotas_restante";
+      gap:1.5rem;
+      margin-bottom:2rem;
+      margin-top:2rem;
+
+    }
+    .campo-menos-inicial    { grid-area: valor_menos_cuota_inicial; }
+    .campo-cuotas-restantes { grid-area: cuotas_restante; }
+
+
+//DIVISION DE CUOTAS RESTANTES
+      .cuotas-fechas2 {
+        display: grid;
+        grid-template-columns: repeat(2, auto); /* Dos columnas automáticas */
+        justify-content: center; /* Centra horizontalmente */
+        align-items: start;
+        gap: 1rem 3rem; /* espacio entre columnas y filas */
+        max-width: 100%; /* evita que se desborde */
+        margin-top: 2rem; /* centra el bloque dentro del padre */
+
+        
+      }
+
+      /* línea divisoria vertical */
+      .cuotas-fechas2::before {
+        content: "";
+        position: absolute;
+        top: -80%;                /* inicia justo al inicio de la sección */
+        bottom: 0;             /* termina al final de las filas */
+        left: 56%;             /* centrada */
+        transform: translateX(-50%);
+        transform: translateY(138%); 
+        width: 2px;
+        background-color: #dce4f0; /* color azulito */
+        border-radius: 2px;
+
+      }
+
+      /* Cada fila de cuota con su fecha */
+      .cuotas-fechas2 .fila-cuota2 {
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      /* Asignar manualmente las posiciones (igual que antes) */
+      .cuotas-fechas2 .fila-cuota2:nth-child(1)  { grid-column: 1; grid-row: 1; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(2)  { grid-column: 1; grid-row: 2; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(3)  { grid-column: 1; grid-row: 3; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(4)  { grid-column: 1; grid-row: 4; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(5)  { grid-column: 1; grid-row: 5; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(6)  { grid-column: 1; grid-row: 6; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(7)  { grid-column: 1; grid-row: 7; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(8)  { grid-column: 1; grid-row: 8; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(9)  { grid-column: 1; grid-row: 9; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(10) { grid-column: 1; grid-row: 10; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(11) { grid-column: 1; grid-row: 11; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(12) { grid-column: 1; grid-row: 12; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(13) { grid-column: 1; grid-row: 13; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(14) { grid-column: 1; grid-row: 14; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(15) { grid-column: 1; grid-row: 15; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(16) { grid-column: 1; grid-row: 16; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(17) { grid-column: 1; grid-row: 17; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(18) { grid-column: 1; grid-row: 18; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(19) { grid-column: 1; grid-row: 19; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(20) { grid-column: 1; grid-row: 20; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(21) { grid-column: 1; grid-row: 21; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(22) { grid-column: 1; grid-row: 22; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(23) { grid-column: 1; grid-row: 23; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(24) { grid-column: 1; grid-row: 24; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(25)  { grid-column: 2; grid-row: 1; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(26)  { grid-column: 2; grid-row: 2; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(27)  { grid-column: 2; grid-row: 3; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(28)  { grid-column: 2; grid-row: 4; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(29)  { grid-column: 2; grid-row: 5; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(30)  { grid-column: 2; grid-row: 6; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(31)  { grid-column: 2; grid-row: 7; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(32)  { grid-column: 2; grid-row: 8; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(33)  { grid-column: 2; grid-row: 9; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(34)  { grid-column: 2; grid-row: 10; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(35)  { grid-column: 2; grid-row: 11; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(36)  { grid-column: 2; grid-row: 12; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(37)  { grid-column: 2; grid-row: 13; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(38)  { grid-column: 2; grid-row: 14; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(39)  { grid-column: 2; grid-row: 15; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(40)  { grid-column: 2; grid-row: 16; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(41)  { grid-column: 2; grid-row: 17; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(42)  { grid-column: 2; grid-row: 18; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(43)  { grid-column: 2; grid-row: 19; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(44)  { grid-column: 2; grid-row: 20; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(45)  { grid-column: 2; grid-row: 21; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(46)  { grid-column: 2; grid-row: 22; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(47)  { grid-column: 2; grid-row: 23; }
+      .cuotas-fechas2 .fila-cuota2:nth-child(48)  { grid-column: 2; grid-row: 24; }
+
+      /* Estilos de los campos */
+      .cuotas-fechas2 label {
+        white-space: nowrap;
+        font-weight: 600;
+        color: #0b79b8;
+        font-size: 0.95rem;
+      }
+
+      .cuotas-fechas2 input[type="text"],
+      .cuotas-fechas2 input[type="date"] {
+        width: 9rem; /* tamaño uniforme */
+        font-size: 1rem;
+        box-sizing: border-box;
+      }
+
+      /* Asegura que las columnas internas queden centradas */
+      .campo-inline4 {
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .campo-cuotas-inicial{
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: 2rem;
+        width: 9rem;
+        
+      }
+
+
+    .cuota-modificada {
+      background-color: #fff4cc !important; // Amarillo claro
+      border: 2px solid #ffb300 !important;
+      font-weight: 600;
+    }
+
+// contenido agentes parte final del formulario ventas
+
+.contenido-agentes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Cada grupo-agente tiene su propio grid */
+.grupo-agente {
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 1fr; /* tres columnas iguales */
+  grid-template-areas:
+    "agente porcentaje valor";
+  gap: 1.5rem;
+  box-sizing: border-box;
+}
+
+.campo-agente1, .campo-agente2, .campo-agente3 { grid-area: agente; }
+.campo-porcentaje1, .campo-porcentaje2, .campo-porcentaje3 { grid-area: porcentaje; }
+.campo-valor1, .campo-valor2, .campo-valor3 { grid-area: valor; }
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.campo input,
+.campo select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grupo-agente {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "agente"
+      "porcentaje"
+      "valor";
+  }
+}

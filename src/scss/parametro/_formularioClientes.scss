@@ -1,0 +1,70 @@
+@use "sass:color";
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.formulario-clientes {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 247, 250, 0.95));
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.15);
+  border-radius: 1.5rem;
+  padding: 3rem 4rem;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.25);
+  }
+
+  .encabezado-cliente {
+    hr {
+      border: none;
+      height: 3px;
+      background: linear-gradient(to right, v.$azul, color.adjust(v.$azul, $lightness: 20%, $space: hsl));
+      border-radius: 5px;
+      margin-bottom: 2rem;
+    }
+
+    .nombre2-cliente {
+      font-family: v.$fuente_logo;
+      text-align: center;
+      font-size: 2.2rem;
+      margin: 0 0 1rem;
+      color: v.$azul;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+// Sección con 2 columnas
+.contenido-campo-cliente {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+// Botones
+.boton2,
+.boton3 {
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.boton2 {
+  background: linear-gradient(to right, #28a745, #218838);
+  color: #fff;
+}
+
+.boton3 {
+  background: linear-gradient(to right, #ffc107, #e0a800);
+  color: #000;
+}

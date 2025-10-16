@@ -1,0 +1,19 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.tabla-contenedor {
+  display: flex;
+  justify-content: center; // centra horizontalmente
+  margin-top: 2rem;        // separación desde arriba
+}
+
+.tabla-proyectos {
+  width: 80%;              // ajusta el ancho de la tabla (ej: 70%, 60%)
+  max-width: 900px;        // para que no se estire demasiado en pantallas grandes
+  border-collapse: collapse;
+  text-align: left;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}

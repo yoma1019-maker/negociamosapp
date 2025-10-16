@@ -1,0 +1,63 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+
+.dashboard{
+    display: flex;
+    background-color: v.$grisClaro2;
+     min-height: 100vh;
+
+    @include m.tablet {
+        display: flex;
+        min-height: 100vh; //altura de toda la pantalla
+        
+    }
+
+    .principal{
+        flex: 1;
+        margin-left: 15rem; // Ajusta al ancho real de tu sidebar
+        padding-top: 35px;
+    }
+
+    .contenido{
+
+        flex: 1; // hace que crezca y llene el espacio
+        min-height: 100vh; // evita que quede cortado
+        background-color: #f5f5f5; 
+
+        padding-top: 1rem;
+
+        .nombre-pagina{
+            font-size: 2rem;
+            text-align: center;
+            font-family: v.$fuente_headings;
+            text-transform: uppercase;
+            text-shadow: 1px 1px rgba(0,0,0,0.3);
+            margin-bottom: 0;
+
+        }
+    }
+
+    .botones{
+
+        display: flex;
+        justify-content:center;
+        gap: 1rem;
+        margin-top: 1rem;
+
+        .boton2{
+            @include m.boton2 (v.$verde2, v.$negro);
+        }
+
+        .boton3{
+            @include m.boton3 (v.$amarillo, v.$negro);
+        }
+
+        
+    } 
+    
+
+
+
+}
+

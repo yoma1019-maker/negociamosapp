@@ -1,0 +1,16 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.alerta{
+
+    color: red;
+    top: 495px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: rgba(v.$rojo, 0.3);
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+
+}
+

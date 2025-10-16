@@ -1,0 +1,86 @@
+@use "sass:color";
+
+@use 'base/variables' as v;
+
+/** Media Queries **/
+@mixin telefono {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+
+
+@mixin boton($bgColor, $colorTexto) {
+    background-color: $bgColor;
+    padding: 1.5rem 4rem;
+    color: $colorTexto;
+    font-size: 1.6rem;
+    display: inline-block;
+    font-weight: 700;
+    border: none;
+    transition-property: background-color;
+    transition-duration: .3s;
+    text-align: center;
+    display: block;
+
+    &:hover {
+        background-color: color.adjust( $bgColor, $lightness: -10%, $space: hsl );
+        cursor: pointer;
+    }
+}
+
+@mixin boton2($bgColor, $colorTexto) {
+    background-color: $bgColor;
+    padding: 1rem 2rem;
+    color: $colorTexto;
+    font-size: 1.6rem;
+    display: inline-block;
+    font-weight: 600;
+    border: none;
+    transition-property: background-color;
+    transition-duration: .3s;
+    text-align: center;
+    display: block;
+
+    &:hover {
+        background-color: color.adjust( $bgColor, $lightness: -3%, $space: hsl );
+        cursor: pointer;
+    }
+}
+
+@mixin boton3($bgColor, $colorTexto) {
+    background-color: $bgColor;
+    padding: 1rem 2rem;
+    color: $colorTexto;
+    font-size: 1.6rem;
+    display: inline-block;
+    font-weight: 600;
+    border: none;
+    transition-property: background-color;
+    transition-duration: .3s;
+    text-align: center;
+    display: block;
+
+    &:hover {
+        background-color: color.adjust( $bgColor, $lightness: -3%, $space: hsl );
+        cursor: pointer;
+    }
+}
+
+@mixin grid($columnas, $espaciado ) {
+    display: grid;
+    gap: $espaciado;
+    grid-template-columns: repeat($columnas, 1fr);
+}
+
+

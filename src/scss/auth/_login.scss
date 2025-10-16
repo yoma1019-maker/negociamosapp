@@ -1,0 +1,20 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+
+
+
+.login{
+
+    input[type="submit"]{
+        @include m.boton (v.$cyan, v.$blanco);
+    }
+
+   
+}
+
+
+
+
+

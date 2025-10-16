@@ -1,0 +1,81 @@
+@use "sass:color";
+
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+
+
+
+.formulario {
+
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 4rem;
+        box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1);;
+        border-radius: 1.5rem;
+       //width: 100%;
+        margin-top: 15rem;
+       
+    .boton{
+        width: 100%;
+    }
+
+    .encabezado{
+
+        .logo{
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 10px -6px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1);;
+            border-radius: 50rem;
+            position: absolute;
+            top: 100px;
+            left: calc(50% - 50px);
+            width: 10rem;
+        }
+
+         .nombre{
+
+            font-family: v.$fuente_logo;
+            text-align: center;
+            font-size: 4rem;
+            margin-top: 2.5rem;
+        }
+        }
+
+        .recordar{
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+
+            .nombre-re{
+                font-size: 1.2rem;
+                padding: 0.5rem;
+         }
+}
+
+    .campo{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        position: relative;
+
+        input{
+            flex: 1; // para alartar los campos del formulario
+            padding: 0.8rem; // para mas altura de los campos
+            border:none;
+            background-color: color.adjust(v.$blanco, $lightness: 40%, $space: hsl);
+            font-size: 1.6rem;
+            padding-left: 3rem;
+            border-radius: 0.5rem;
+           
+        }
+
+        i{
+            position: absolute;
+            margin-left: 1rem;
+            font-size: 1.5rem;
+            color: v.$grisOscuro;
+        }
+        
+        }
+   
+}

@@ -1,0 +1,67 @@
+@use "sass:color";
+
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+
+
+
+.dashboard__sidebar{
+    background-color: color.adjust(v.$azul, $lightness: -10%, $space: hsl);
+    //padding: 1rem;
+    box-shadow: 14px -8px 9px -13px rgba(0,0,0,.5);
+    width: 15rem;
+
+    position: fixed;
+    top: 3.8rem; // <-- Cambia aquí al alto de tu barra
+    left: 0;
+    height: calc(100vh - 3.8rem); // <-- Igual que el top
+    z-index: 99;
+    overflow-y: auto;
+
+    img{
+        width: 100rem;
+        padding-right: 1rem;
+        
+        
+    }
+
+    .dashboard__menu{
+        margin-top: 1rem;
+       display: flex;
+       flex-direction: column;
+       padding: 1rem;
+       
+
+        a{
+            display: flex;
+            //flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-align: left;
+            color: v.$blanco;
+            padding: 0.7rem;
+            transition-property: background-color;
+            transition-duration: 400ms;
+            text-transform: uppercase;
+            font-weight: 500;
+            
+
+            &:hover, 
+            &.activo{
+               background-color: color.adjust(v.$azul, $lightness: -18%, $space: hsl);
+               border-radius: 0.5rem;
+
+            }
+
+            i{
+                font-size: 1.7rem;
+                width: 20px;
+                height: 20px;
+                margin-right: 0.8rem ;
+            }
+        }
+    }
+}
+
