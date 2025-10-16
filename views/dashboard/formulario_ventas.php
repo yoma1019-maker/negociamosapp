@@ -823,9 +823,14 @@
                             <button type="submit" class="btn-enviar">Enviar</button>
                         </div>
 
-                       <button type="button" id="btnGenerarPDF" class="btn btn-warning">
-                        📄 Generar Proyección PDF
-                        </button>
+<a id="btnPDF"
+   href="/proyeccion/generarPDF"
+   class="btn btn-warning"
+   target="_blank">
+   📄 Generar PDF
+</a>
+
+
 
 
                     </div>

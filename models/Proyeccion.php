@@ -2,7 +2,8 @@
 namespace Model;
 
 
-
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Proyeccion extends ActiveRecord {
 
@@ -213,13 +214,51 @@ public $id;
         'estado_lote'
     ];
 
+
+
+        public static function generarPDF() {
+        require_once __DIR__ . '/../models/Ventas.php';
+        require_once __DIR__ . '/../../vendor/autoload.php';
+
+        // 🔹 1. Obtener el último registro
+        $venta = Ventas::consultarSQL("SELECT * FROM ventas ORDER BY id DESC LIMIT 1");
+        $venta = $venta[0] ?? null;
+
+        if (!$venta) {
+            http_response_code(404);
+            echo "⚠️ No se encontró ninguna venta registrada.";
+            exit;
+        }
+
+        // 🔹 2. Generar HTML desde la vista
+        ob_start();
+        include __DIR__ . '/../views/pdf/proyeccion.php';
+        $html = ob_get_clean();
+
+        // 🔹 3. Configurar Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isRemoteEnabled', true);
+
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        // 🔹 4. Mostrar el PDF
+        header('Content-Type: application/pdf');
+        echo $dompdf->output();
+    }
+
     // 🔹 Método adicional para traer la info completa del cliente y del agente
+    
+    
     public static function obtenerConRelacion($id) {
     $query = "SELECT 
-                v.*, 
+                v.*,    
                 c.nombre AS cliente_nombre,
                 c.cedula AS cliente_cedula,
-                c.celular AS cliente_telefono,  /* revisa si tu columna es celular o telefono */
+                c.celular AS cliente_telefono,
                 c.email AS cliente_email,
                 c.direccion AS cliente_direccion,
                 c.ciudad AS cliente_ciudad,
@@ -234,8 +273,9 @@ public $id;
     $resultado = self::consultarSQL($query);
     if (!$resultado) return null;
     $fila = array_shift($resultado);
-    return (object) $fila; // <-- importante: convertimos a objeto
+    return (object) $fila;
 }
+
 
 
     

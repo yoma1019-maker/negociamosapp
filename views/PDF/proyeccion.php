@@ -98,10 +98,10 @@ th { background: #f2f2f2; font-weight: bold; }
                     </tr>
                     <tr>
                         <td class="bold" style="width:25%;">MTRS2:</td>
-                        <td><?= fmt($venta->mtrs2 ?? 0) ?></td>
+                        <td><?= fmt($venta->aream ?? 0) ?></td>
 
                         <td class="bold" style="width:25%;">VALOR METR2:</td>
-                        <td><?= fmt($venta->valor_m2 ?? 0) ?></td>
+                        <td><?= fmt($venta->valor_aream ?? 0) ?></td>
                     </tr>
                 </table>
 
@@ -117,13 +117,13 @@ th { background: #f2f2f2; font-weight: bold; }
                     <tbody>
                         <tr>
                         <td class="center bold">%</td>
-                        <td class="right"><?= num($venta->valor_real ?? 0) ?></td>
+                        <td class="right"><?= num($venta->porcen_restante ?? 0) ?></td>
                         <td class="center bold">%</td>
-                        <td class="right"><?= num($venta->valor_real ?? 0) ?></td>
+                        <td class="right"><?= num($venta->porcen_inicial ?? 0) ?></td>
                         </tr>
                         <tr>
                         <td class="center bold">VALOR TOTAL LOTE ($)</td>
-                        <td class="right"><?= num($venta->valor_real ?? 0) ?></td>
+                        <td class="right"><?= num($venta->valor_total ?? 0) ?></td>
                         <td class="center bold">CUOTA INICIAL ($)</td>
                         <td class="right"><?= num($venta->cuota_inicial ?? 0) ?></td>
                         </tr>
@@ -137,16 +137,16 @@ th { background: #f2f2f2; font-weight: bold; }
 
                         <tr>
                         <td class="center bold">VALOR DE VENTA ($):</td>
-                        <td class="right"><?= num($venta->valor_total ?? 0) ?></td>
+                        <td class="right"><?= num($venta->valor_venta ?? 0) ?></td>
                         <td class="center bold">PENDIENTE INICIAL ($):</td>
-                        <td class="right"><?= num($venta->pendiente_inicial ?? 0) ?></td>
+                        <td class="right"><?= num($venta->saldo_inicial ?? 0) ?></td>
                         </tr>
 
                         <tr>
                         <td class="center bold">NÚMERO DE CUOTAS:</td>
-                        <td class="center"><?= fmt($venta->numero_cuotas ?? '') ?></td>
+                        <td class="center"><?= fmt($venta->numcuota_restante ?? '') ?></td>
                         <td class="center bold">NÚMERO DE CUOTAS:</td>
-                        <td class="center"><?= fmt($venta->numero_cuotas_inicial ?? '') ?></td>
+                        <td class="center"><?= fmt($venta->numcuota_inicial ?? '') ?></td>
                         </tr>
                     </tbody>
                     </table>

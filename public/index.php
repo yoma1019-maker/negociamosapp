@@ -57,7 +57,7 @@ $router->post('/guardar_venta', [DashboardController::class, 'guardarVenta']);
 
 //PDF proyeccion de pagos
 $router->get('/proyeccion/generarPDF', [ProyeccionController::class, 'generarPDF']);
-$router->post('/proyeccion/generarPDF', [ProyeccionController::class, 'generarPDF']);
+//$router->post('/proyeccion', [ProyeccionController::class, 'generarPDF']);
 
 //$router->get('/proyeccion/pdf', [ProyeccionController::class, 'generarPDF']);
 //$router->get('/proyeccion/vista', [ProyeccionController::class, 'vistaPrevia']);
@@ -68,7 +68,9 @@ $router->post('/proyeccion/generarPDF', [ProyeccionController::class, 'generarPD
 
 //area administracion
 
-
+$router->get('/prueba', function() {
+    echo "Ruta funcionando ✅";
+});
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

@@ -338,69 +338,70 @@ class Ventas extends ActiveRecord {
     }
     // Dentro de Model\Ventas.php
 public function limpiarCamposMoneda()
-{
-    // Campos que queremos normalizar (puedes añadir/quitar según necesites)
-    $camposNumericos = [
-        'valor_aream', 'valor_total', 'descuento', 'valor_venta',
-        'porcen_inicial', 'cuota_inicial', 'separacion', 'saldo_inicial',
-        'porcen_restante', 'valor_restante'
-    ];
+        {
+            // Campos que queremos normalizar (puedes añadir/quitar según necesites)
+            $camposNumericos = [
+                'valor_aream', 'valor_total', 'descuento', 'valor_venta',
+                'porcen_inicial', 'cuota_inicial', 'separacion', 'saldo_inicial',
+                'porcen_restante', 'valor_restante'
+            ];
 
-    for ($i = 1; $i <= 12; $i++) $camposNumericos[] = "valcuota_inicial{$i}";
-    for ($i = 1; $i <= 48; $i++) $camposNumericos[] = "valcuota_restante{$i}";
+            for ($i = 1; $i <= 12; $i++) $camposNumericos[] = "valcuota_inicial{$i}";
+            for ($i = 1; $i <= 48; $i++) $camposNumericos[] = "valcuota_restante{$i}";
 
-    foreach ($camposNumericos as $campo) {
-        if (!property_exists($this, $campo)) continue;
+            foreach ($camposNumericos as $campo) {
+                if (!property_exists($this, $campo)) continue;
 
-        $raw = $this->$campo;
+                $raw = $this->$campo;
 
-        // Si viene vacío o null, mantenemos NULL (no forzamos 0)
-        if ($raw === null || $raw === '' ) {
-            $this->$campo = null;
-            continue;
+                // Si viene vacío o null, mantenemos NULL (no forzamos 0)
+                if ($raw === null || $raw === '' ) {
+                    $this->$campo = null;
+                    continue;
+                }
+
+                // Asegurarnos que trabajamos con string
+                $s = (string)$raw;
+                // quitar espacios normales y espacios no-break
+                $s = trim($s);
+                $s = str_replace("\xC2\xA0", '', $s); // eliminar NBSP si existe
+
+                // Eliminar todo excepto dígitos, puntos y comas
+                $s = preg_replace('/[^\d\.\,]/u', '', $s);
+
+                // Normalizar formatos comunes:
+                // - "1.234.567,89" (es-CO): puntos = miles, coma = decimal -> eliminar puntos, coma->.
+                // - "1,234,567.89" (en-US): comas = miles, punto = decimal -> eliminar comas
+                // - "1234567.89" o "1234567,89"
+                if (strpos($s, ',') !== false && strpos($s, '.') !== false) {
+                    // hay ambos: asumimos formato europeo (puntos miles, coma decimal)
+                    // pero hay casos mixtos; tratar como: eliminar puntos, coma->.
+                    // si no es correcto en tu caso, ajusta la heurística
+                    $s = str_replace('.', '', $s);
+                    $s = str_replace(',', '.', $s);
+                } elseif (strpos($s, ',') !== false && strpos($s, '.') === false) {
+                    // solo coma: asumimos coma decimal -> convertir a punto
+                    $s = str_replace(',', '.', $s);
+                } elseif (strpos($s, '.') !== false && substr_count($s, '.') > 1) {
+                    // varios puntos -> se asume puntos como separador de miles -> borrar
+                    $s = str_replace('.', '', $s);
+                }
+                // en otros casos (un solo punto) lo dejamos como decimal
+
+                // Finalmente convertir a float (o NULL si no es numérico)
+                $num = is_numeric($s) ? (float)$s : null;
+
+                $this->$campo = $num;
+            }
         }
-
-        // Asegurarnos que trabajamos con string
-        $s = (string)$raw;
-        // quitar espacios normales y espacios no-break
-        $s = trim($s);
-        $s = str_replace("\xC2\xA0", '', $s); // eliminar NBSP si existe
-
-        // Eliminar todo excepto dígitos, puntos y comas
-        $s = preg_replace('/[^\d\.\,]/u', '', $s);
-
-        // Normalizar formatos comunes:
-        // - "1.234.567,89" (es-CO): puntos = miles, coma = decimal -> eliminar puntos, coma->.
-        // - "1,234,567.89" (en-US): comas = miles, punto = decimal -> eliminar comas
-        // - "1234567.89" o "1234567,89"
-        if (strpos($s, ',') !== false && strpos($s, '.') !== false) {
-            // hay ambos: asumimos formato europeo (puntos miles, coma decimal)
-            // pero hay casos mixtos; tratar como: eliminar puntos, coma->.
-            // si no es correcto en tu caso, ajusta la heurística
-            $s = str_replace('.', '', $s);
-            $s = str_replace(',', '.', $s);
-        } elseif (strpos($s, ',') !== false && strpos($s, '.') === false) {
-            // solo coma: asumimos coma decimal -> convertir a punto
-            $s = str_replace(',', '.', $s);
-        } elseif (strpos($s, '.') !== false && substr_count($s, '.') > 1) {
-            // varios puntos -> se asume puntos como separador de miles -> borrar
-            $s = str_replace('.', '', $s);
-        }
-        // en otros casos (un solo punto) lo dejamos como decimal
-
-        // Finalmente convertir a float (o NULL si no es numérico)
-        $num = is_numeric($s) ? (float)$s : null;
-
-        $this->$campo = $num;
-    }
-}
 
 
     // 🔹 Mantener método de validación
-    public function validarVentas() {
+public function validarVentas() {
         return self::$alertas;
     }
 
   
 
 }
+

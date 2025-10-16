@@ -1021,17 +1021,22 @@ actualizarAgentes();
                     body: formData
                     })
                                 
-                    .then(res => res.blob())
-                    .then(blob => {
-                        const url = window.URL.createObjectURL(blob);
-                        const a = document.createElement("a");
-                        a.href = url;
-                        a.download = "Proyeccion_Pago.pdf";
-                        a.click();
-                        window.URL.revokeObjectURL(url);
-                    })
-                        .catch(err => alert("Error al generar la proyección: " + err));
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.ok) {
+                                alert("✅ Venta guardada correctamente.");
+
+                                // Mostrar botón Generar PDF
+                                const pdfBtn = document.getElementById("btnPDF");
+                                if (pdfBtn) {
+                                    pdfBtn.style.display = "inline-block";
+                                    pdfBtn.setAttribute("href", `/proyeccion/generarPDF?id=${data.id}`);
+                                }
+                            } else {
+                                alert("⚠️ Ocurrió un error al guardar la venta.");
+                            }
                         });
+            });
                         
         }
 

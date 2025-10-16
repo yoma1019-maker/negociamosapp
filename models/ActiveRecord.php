@@ -251,7 +251,7 @@ class ActiveRecord {
             return $resultado;
         }
 //consultar
-            public static function consultarSQL($query) {
+        public static function consultarSQL($query) {
             // Consultar la base de datos
             $resultado = self::$db->query($query);
 
@@ -347,4 +347,15 @@ class ActiveRecord {
           }
         }
     }
+
+    public static function findLast() {
+    $query = "SELECT * FROM " . static::$tabla . " ORDER BY id DESC LIMIT 1";
+    $resultado = static::consultarSQL($query);
+    return $resultado[0] ?? null;
+}
+
+
+
+
+
 }

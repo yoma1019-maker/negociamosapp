@@ -9,6 +9,7 @@ use Model\Ventas;
 use Model\ListadoProyectos;
 use Model\estadoVentas;
 use Model\Clientes;
+use Model\Proyeccion;
 use MVC\Router;
 
 
@@ -748,7 +749,13 @@ class DashboardController {
 
 
 
-}
+
+
+
+
+
+
+    }
 
 
 
