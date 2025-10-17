@@ -30,7 +30,14 @@ class Clientes extends ActiveRecord {
     public $cedula2;
     public $proyeccion_pdf;
     public $intencion_pdf;
+
+
+     // ⚠️ Estas NO son columnas de la base de datos,
+    // solo propiedades adicionales para mostrar en PDF.
     public $nombre_agente;
+    public $nombre_ciudad;
+    public $nombre_pais;
+
 
 
 
@@ -68,6 +75,9 @@ class Clientes extends ActiveRecord {
         $this->cedula2      = $args['cedula2'] ?? '';
         $this->proyeccion_pdf = $args['proyeccion_pdf'] ?? '';
         $this->intencion_pdf  = $args['intencion_pdf'] ?? '';
+        $this->nombre_agente = '';
+        $this->nombre_ciudad = '';
+        $this->nombre_pais   = '';
     }
 
 
@@ -115,8 +125,19 @@ class Clientes extends ActiveRecord {
         }
         return $clientes;
     }
+public function cargarRelaciones() {
+    // 🔹 Traer nombre de ciudad
+    if (!empty($this->ciudad)) {
+        $ciudad = \Model\Ciudad::find($this->ciudad);
+        $this->nombre_ciudad = $ciudad->ciudad ?? '';
+    }
 
-    
+    // 🔹 Traer nombre de país
+    if (!empty($this->pais)) {
+        $pais = \Model\Pais::find($this->pais);
+        $this->nombre_pais = $pais->pais ?? '';
+    }
+}
 
 
 

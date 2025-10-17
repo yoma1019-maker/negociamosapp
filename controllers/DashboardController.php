@@ -503,8 +503,14 @@ class DashboardController {
                     // ===== 3. Crear la venta con cliente_id seguro =====
                     $ventas = new Ventas();
                     $ventas->sincronizar($data);
-                    $ventas->agente_id = $data['agentes']['principal'] ?? null;
-                    $cliente_id = $cliente->id; // obtener nuevo id
+                    
+                // ✅ Asignar correctamente el agente seleccionado
+                if (isset($data['agentes']['principal'])) {
+                    $ventas->agente_id = $data['agentes']['principal'];
+                }
+
+                // ✅ Asociar el cliente creado o actualizado
+                $ventas->cliente_id = $cliente->id ?? null;
 
 
             

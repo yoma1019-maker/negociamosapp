@@ -1,4 +1,5 @@
 <?php
+
 function fmt($v) { return htmlspecialchars($v ?? ''); }
 function num($v) { return number_format((float)($v ?? 0), 0, ',', '.'); }
 function fdate($d) { return $d ? date('d/m/Y', strtotime($d)) : ''; }
@@ -7,81 +8,84 @@ function fdate($d) { return $d ? date('d/m/Y', strtotime($d)) : ''; }
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Proyección de Pago - <?= fmt($venta->nombre_cliente ?? '') ?></title>
+<title>Proyección de Pago - <?= fmt($venta->proyecto ?? '') ?></title>
 <style>
-body { font-family: Arial, Helvetica, sans-serif; font-size: 12px; margin: 25px; color: #000; }
-table { width: 100%; border-collapse: collapse; margin-top: 5px; }
-td, th { border: 1px solid #444; padding: 5px; vertical-align: middle; }
-th { background: #f2f2f2; font-weight: bold; }
-.no-border td { border: none; }
-.center { text-align: center; }
-.bold { font-weight: bold; }
-.right { text-align: right; }
-.section-title {
-  background: #267599;
-  font-weight: bold;
-  padding: 6px;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  border: 1px solid #FFFFFF;
+<?php
+$cssPath = __DIR__ . '/../../public/build/css/app.css'; // o ajusta si tu carpeta se llama css/
+if (file_exists($cssPath)) {
+    echo file_get_contents($cssPath);
+} else {
+    echo "/* ⚠️ No se encontró el archivo de estilos: $cssPath */";
 }
-.logo { text-align: left; }
+?>
 </style>
 </head>
 <body>
 
 <!-- ENCABEZADO -->
         <table class="no-border">
-        <tr>
+            <tr>
             <td class="logo" style="width:30%;">
             <img src="https://i.ibb.co/4fv9L9J/logo-alcala.png" alt="Logo" width="120">
             </td>
             <td class="center bold" style="font-size:16px;">PROYECCIÓN DE PAGO</td>
-        </tr>
+            </tr>
         </table>
 
 <!-- DATOS DEL VENDEDOR-->
+
+        
             <p class="section-title">Datos del Promitente Vendedor</p>
-                <table>
-                    
+
+                <table class="tabla-vendedor">
                     <tr>
-                        <td class="bold">PROMITENTE VENDEDOR:</td>
-                        <td><?= fmt($venta->agente1_id ?? '') ?></td>
+                        <td class="bold">NOMBRE:</td>
+                        <td><?= fmt($agente_datos->nombre ?? '') ?></td>
+                    <tr>
                         <td class="bold">CELULAR:</td>
-                        <td><?= fmt($venta->telefono_vendedor ?? '') ?></td>
+                        <td><?= fmt($agente_datos->celular ?? '') ?></td>
                     </tr>
                     <tr>
                         <td class="bold">DIRECCIÓN:</td>
-                        <td><?= fmt($venta->direccion_vendedor ?? '') ?></td>
-                        <td class="bold">CORREO ELECTRÓNICO:</td>
-                        <td colspan="3"><?= fmt($venta->correo_vendedor ?? '') ?></td>
+                        <td><?= fmt($agente_datos->direccion ?? '') ?></td>
+                    </tr>
+                    <tr>
+                        <td class="bold">EMAIL:</td>
+                        <td><?= fmt($agente_datos->email ?? '') ?></td>
                     </tr>
                 </table>
+
 
 <!-- DATOS DEL CLIENTE -->
             <p class="section-title">Promitente Comprador</p>
                 <table>
                     <tr>
                         <td class="bold">NOMBRES Y APELLIDOS:</td>
-                        <td><?= fmt($venta->nombre_cliente ?? '') ?></td>
+                        <td><?= fmt($cliente_datos->nombre ?? '') ?></td>
+                    </tr>
+                    <tr>
                         <td class="bold">N° IDENTIFICACIÓN:</td>
-                        <td><?= fmt($venta->cedula_cliente ?? '') ?></td>
+                        <td><?= fmt($cliente_datos->cedula ?? '') ?></td>
                     </tr>
                     <tr>
                         <td class="bold">TELÉFONO DE CONTACTO:</td>
-                        <td><?= fmt($venta->telefono_cliente ?? '') ?></td>
+                        <td><?= fmt($cliente_datos->celular ?? '') ?></td>
+                    </tr>
+                    <tr>
                         <td class="bold">CORREO ELECTRÓNICO:</td>
-                        <td><?= fmt($venta->correo_cliente ?? '') ?></td>
+                        <td><?= fmt($cliente_datos->email ?? '') ?></td>
                     </tr>
                     <tr>
                         <td class="bold">DIRECCIÓN DE RESIDENCIA:</td>
-                        <td colspan="3"><?= fmt($venta->direccion_cliente ?? '') ?></td>
+                        <td ><?= fmt($cliente_datos->direccion ?? '') ?></td>
                     </tr>
                     <tr>
                         <td class="bold">CIUDAD:</td>
-                        <td><?= fmt($venta->ciudad_cliente ?? '') ?></td>
+                        <td><?= fmt($cliente_datos->nombre_ciudad?? '') ?></td>
+                    </tr>
+                    <tr>
                         <td class="bold">PAÍS:</td>
-                        <td><?= fmt($venta->pais_cliente ?? '') ?></td>
+                        <td><?= fmt($cliente_datos->nombre_pais ?? '') ?></td>
                     </tr>
                 </table>
 
@@ -91,16 +95,14 @@ th { background: #f2f2f2; font-weight: bold; }
                 <table>
                     <tr>
                         <td class="bold" style="width:25%;">PROYECTO:</td>
-                        <td><?= fmt($venta->proyecto ?? 'ALCALÁ CONDOMINIO CAMPESTRE') ?></td>
-                        
                         <td class="bold" style="width:25%;">N° LOTE:</td>
-                        <td><?= fmt($venta->lote ?? '') ?></td>
+                        <td class="bold" style="width:25%;">MTRS2:</td>
+                        <td class="bold" style="width:25%;">VALOR METR2:</td>
                     </tr>
                     <tr>
-                        <td class="bold" style="width:25%;">MTRS2:</td>
+                        <td><?= fmt($venta->proyecto ?? '') ?></td>
+                        <td><?= fmt($venta->lote ?? '') ?></td>
                         <td><?= fmt($venta->aream ?? 0) ?></td>
-
-                        <td class="bold" style="width:25%;">VALOR METR2:</td>
                         <td><?= fmt($venta->valor_aream ?? 0) ?></td>
                     </tr>
                 </table>

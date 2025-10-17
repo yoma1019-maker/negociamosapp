@@ -2,12 +2,17 @@
 namespace Controllers;
 
 use Dompdf\Dompdf;
+use Dompdf\Options;
 
 
 class ProyeccionController {
 
         public static function generarPDF() {
                 require_once __DIR__ . '/../models/Ventas.php';
+                require_once __DIR__ . '/../models/Agente.php';
+                require_once __DIR__ . '/../models/Clientes.php';
+                require_once __DIR__ . '/../models/Listados/Ciudad.php';
+                require_once __DIR__ . '/../models/Listados/Pais.php';
                 require_once __DIR__ . '/../vendor/autoload.php';
 
 
@@ -21,24 +26,46 @@ class ProyeccionController {
                     exit;
                 }
 
+                /** @var \Model\Ventas $venta */
+                /** @var \Model\Agente|null $agente */
+                /** @var \Model\Clientes|null $cliente */
+        
+
+                            // ✅ Traer datos del agente (usando el nombre real del campo)
+                    $agente = null;
+                    if (!empty($venta->agente_id)) {
+                        $agente = \Model\Agente::find($venta->agente_id);
+                    }
+
+                     $cliente = null;
+                    if (!empty($venta->cliente_id)) {
+                        $cliente = \Model\Clientes::find($venta->cliente_id);
+                        $cliente?->cargarRelaciones(); // 🔹 completa nombre_ciudad y nombre_pais
+                    }
+
+                    // ✅ Variables para la vista PDF
+                    $venta_datos = $venta;
+                    $agente_datos = $agente;
+                    $cliente_datos = $cliente;
+
                 // 🔹 Generar HTML
                 ob_start();
                 include __DIR__ . '/../views/pdf/proyeccion.php';
                 $html = ob_get_clean();
 
-                // 🔹 Configurar Dompdf
-                $options = new \Dompdf\Options();
+                // ✅ Generar el PDF
+                $options = new Options();
                 $options->set('isHtml5ParserEnabled', true);
                 $options->set('isRemoteEnabled', true);
 
-                $dompdf = new \Dompdf\Dompdf($options);
+                $dompdf = new Dompdf($options);
                 $dompdf->loadHtml($html);
                 $dompdf->setPaper('A4', 'portrait');
                 $dompdf->render();
 
-                // 🔹 Descargar el archivo directamente
-                $dompdf->stream("proyeccion_venta.pdf", ["Attachment" => true]);
-            }
+                // ✅ Descargar PDF automáticamente
+                $dompdf->stream("proyeccion_venta_{$venta->id}.pdf", ["Attachment" => true]);
+    }
 
 
 

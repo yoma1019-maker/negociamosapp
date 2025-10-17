@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class Paises extends ActiveRecord{
+class Pais extends ActiveRecord{
 
     public $id;
     public $pais;

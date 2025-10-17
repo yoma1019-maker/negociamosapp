@@ -1,0 +1,66 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+/* ======== SIN BORDES ======== */
+.no-border,
+.no-border td,
+.no-border th {
+  border: none !important;
+}
+
+/* ======== CONFIGURACIÓN GENERAL ======== */
+body { 
+  font-family: v.$fuente_logo;
+  font-size: 12px; 
+  margin: 25px; 
+  color: #000;
+}
+
+/* ======== TABLAS ======== */
+table { 
+  border: 0.5px solid #000;
+  width: auto;                  /* 🔹 se ajusta al contenido automáticamente */
+  border-collapse: collapse;    /* 🔹 evita separación entre celdas */
+  border: 0.1px solid #444;     /* 🔹 marco completo */
+  margin: 4px auto;  
+  table-layout: fixed;            /* 🔹 evita que se desborde */
+}
+
+/* ======== CELDAS ======== */
+td, th { 
+  border: 0.1px solid #444; 
+  padding: 4px 8px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+
+/* ======== CABECERAS ======== */
+th { 
+  background: #f2f2f2; 
+  font-weight: bold; 
+}
+
+/* ======== UTILIDADES ======== */
+.center { 
+    text-align: center; 
+}
+
+.logo { text-align: left; }
+
+.section-title {
+  background: #267599;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 0.2rem;
+  color: #FFFFFF;
+  text-transform: uppercase;
+   border-bottom: none;
+
+}
+
+.bold {
+  font-weight: 600;
+  font-family: v.$fuente_logo;
+}
